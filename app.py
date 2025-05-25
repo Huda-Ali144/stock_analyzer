@@ -1,5 +1,11 @@
 # stock_analyzer/app.py
 
+# stock_analyzer/app.py
+
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 import streamlit as st
 import pandas as pd
 import google.generativeai as genai
@@ -11,7 +17,12 @@ from sentiment import analyze_news_sentiment
 from price_predictor import RandomForestPredictor
 
 # Configure Gemini
-genai.configure(api_key="AIzaSyD6D3-kZ-WRM9EOmaBL3TovtBG22pSeI84")
+api_key = os.getenv("GEMINI_API_KEY")
+if not api_key:
+    st.error("❌ Gemini API key not found. Please check your .env file.")
+    st.stop()
+
+genai.configure(api_key=api_key)
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 # — TRADE SIGNAL LOGIC —

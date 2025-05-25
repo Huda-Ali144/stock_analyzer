@@ -1,3 +1,6 @@
+import os
+from dotenv import load_dotenv
+load_dotenv()
 import sys
 import numpy as np
 import pandas as pd
@@ -10,8 +13,9 @@ from price_predictor import RandomForestPredictor
 
 # Gemini
 import google.generativeai as genai
-genai.configure(api_key="AIzaSyD6D3-kZ-WRM9EOmaBL3TovtBG22pSeI84")
-model = genai.GenerativeModel("gemini-pro")
+# Configure Gemini
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 # Evaluation helpers
 def evaluate_ratio(value: float, thresholds=(1.0, 1.0)) -> str:
