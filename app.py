@@ -249,6 +249,7 @@ elif view == "Full Analysis":
     st.success(f"{action}  (score: {score:.2f})")
     st.write(rationale)
 
+# — Ask the AI Assistant —
 elif view == "Ask the AI Assistant":
     st.subheader("💬 Ask the AI Assistant")
 
@@ -266,18 +267,29 @@ elif view == "Ask the AI Assistant":
         ]
         st.session_state.chat_session = model.start_chat(history=st.session_state.chat_history)
 
-    # Display full chat history (excluding system prompt)
+    # Display chat messages in styled container
+    st.markdown("""
+    <style>
+    .chat-message { margin-bottom: 1rem; padding: 0.5rem 1rem; border-radius: 0.5rem; }
+    .chat-user { background-color: #f0f0f5; }
+    .chat-ai { background-color: #e8f5e9; }
+    </style>
+    """, unsafe_allow_html=True)
+
     for msg in st.session_state.chat_history[1:]:
-        role = "🤖" if msg["role"] == "model" else "You"
-        st.markdown(f"**{role}:** {msg['parts'][0]}")
+        role_class = "chat-ai" if msg["role"] == "model" else "chat-user"
+        st.markdown(f"<div class='chat-message {role_class}'><b>{'🤖' if msg['role'] == 'model' else 'You'}:</b> {msg['parts'][0]}</div>", unsafe_allow_html=True)
 
-    # Input box
-    user_input = st.chat_input("Ask a question about this stock")
+    # Chat input with form for better UX
+    with st.form(key="chat_form", clear_on_submit=True):
+        user_input = st.text_input("Type your question here:", key="chat_input")
+        submitted = st.form_submit_button("Send")
 
-    # Handle user message
-    if user_input:
+    if submitted and user_input:
         chat = st.session_state.chat_session
         response = chat.send_message(user_input)
         st.session_state.chat_history.append({"role": "user", "parts": [user_input]})
         st.session_state.chat_history.append({"role": "model", "parts": [response.text]})
         st.rerun()
+        
+
