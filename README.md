@@ -1,4 +1,4 @@
-# 📈 Stock Analyzer
+📈 Stock Analyzer
 
 **Stock Analyzer** is an AI-powered financial analysis tool that combines technical indicators, fundamental ratios, sentiment analysis, and machine learning to generate real-time stock insights. Designed for investors and students, it delivers buy/hold/sell signals and chatbot-powered financial explanations using Google Gemini.
 
@@ -6,7 +6,7 @@
 
 ---
 
-## 🔍 Features
+🔍 Features
 
 📊 Basic Metrics – P/E Ratio, Beta, Dividend Yield, Debt/Equity, etc.
 
@@ -73,7 +73,3 @@ News Parsing: RSS via feedparser + VADER
 Huda Bhayani
 Aspiring AI Engineer | Finance Enthusiast | Problem Solver
 GitHub
-
-
-
-
