@@ -1,7 +1,5 @@
 # stock_analyzer/app.py
 
-# stock_analyzer/app.py
-
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -22,7 +20,7 @@ if not api_key:
     st.error("❌ Gemini API key not found. Please check your .env file.")
     st.stop()
 
-genai.configure(api_key=api_key)
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 # — TRADE SIGNAL LOGIC —
