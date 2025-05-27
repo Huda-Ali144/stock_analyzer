@@ -2,17 +2,25 @@
 
 **Stock Analyzer** is an AI-powered financial analysis tool that combines technical indicators, fundamental ratios, sentiment analysis, and machine learning to generate real-time stock insights. Designed for investors and students, it delivers buy/hold/sell signals and chatbot-powered financial explanations using Google Gemini.
 
+🌐 Live App: smart-stock-tool.streamlit.app
+
 ---
 
 ## 🔍 Features
 
-- 📊 **Basic Metrics** – Price, P/E, Dividend Yield, Beta, Debt/Equity
-- 🧮 **KPI Summary** – Categorized financial ratio analysis
-- 📉 **5-Day Price History** – Chart and table of recent performance
-- 🧠 **Next-Day Price Forecast** – Machine learning-based prediction
-- 💡 **Buy/Hold/Sell Recommendation** – Based on fundamentals, sentiment, and forecast
-- 📰 **News Sentiment** – Headline scraping with sentiment scoring
-- 🤖 **AI Chat Assistant** – Ask investment questions, get insights
+📊 Basic Metrics – P/E Ratio, Beta, Dividend Yield, Debt/Equity, etc.
+
+🧮 KPI Summary – Financial ratio breakdown by category
+
+📉 5-Day Price History – Chart and table of recent stock performance
+
+🧠 Next-Day Price Forecast – Random Forest model prediction
+
+💡 Buy/Hold/Sell Recommendation – Composite score based on fundamentals, sentiment, and predictions
+
+📰 News Sentiment – Headline scraping with VADER-based analysis
+
+🤖 AI Assistant – Conversational Gemini-powered Q&A on the stock
 
 ---
 
@@ -33,18 +41,10 @@ pip install -r requirements.txt
 Create a .env file in the root folder:
 GEMINI_API_KEY=your-api-key-here
 
-Update the top of app.py:
-from dotenv import load_dotenv
-import os
-load_dotenv()
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-
 🚀 Run the App
 streamlit run app.py
 
 📁 Project Structure
-Copy
-Edit
 stock_analyzer/
 ├── app.py
 ├── analyzer.py
@@ -56,22 +56,17 @@ stock_analyzer/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+
 🧠 Tech Stack
 Frontend: Streamlit
-
 ML Model: Random Forest Regressor
-
 Finance Data: yfinance
-
 LLM Assistant: Google Gemini (generativeai)
+News Parsing: RSS via feedparser + VADER
 
 📌 Future Features
 🔮 Long-term forecast using LSTM
-
-☁️ Deployment to Streamlit Cloud
-
 💼 Portfolio tracking and comparison
-
 📄 CSV Ticker Upload
 
 👩‍💻 Author
